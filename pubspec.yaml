@@ -30,6 +30,9 @@ dependencies:
   http: ^1.1.2
   dio: ^5.4.0
   
+  # Supabase
+  supabase_flutter: ^2.3.4
+  
   # Secure Storage
   flutter_secure_storage: ^9.0.0
   
