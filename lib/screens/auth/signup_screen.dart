@@ -25,6 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
   
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
+  String _selectedRole = 'buyer'; // buyer, seller, both
 
   @override
   void dispose() {
@@ -55,6 +56,7 @@ class _SignupScreenState extends State<SignupScreen> {
         password: _passwordController.text,
         phone: _phoneController.text.trim(),
         location: _locationController.text.trim(),
+        role: _selectedRole,
       );
 
       if (success && mounted) {
@@ -169,6 +171,75 @@ class _SignupScreenState extends State<SignupScreen> {
                     }
                     return null;
                   },
+                ),
+                const SizedBox(height: 16),
+
+                // Role Selection
+                Text(
+                  'I want to:',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                
+                Container(
+                  decoration: BoxDecoration(
+                    color: AppTheme.surfaceColor,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: AppTheme.borderColor),
+                  ),
+                  child: Column(
+                    children: [
+                      RadioListTile<String>(
+                        title: const Text('Buy outfits'),
+                        subtitle: Text(
+                          'Browse and purchase pre-owned fashion items',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        value: 'buyer',
+                        groupValue: _selectedRole,
+                        activeColor: AppTheme.primaryColor,
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedRole = value!;
+                          });
+                        },
+                      ),
+                      const Divider(height: 1),
+                      RadioListTile<String>(
+                        title: const Text('Sell outfits'),
+                        subtitle: Text(
+                          'List and sell your pre-owned fashion items',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        value: 'seller',
+                        groupValue: _selectedRole,
+                        activeColor: AppTheme.primaryColor,
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedRole = value!;
+                          });
+                        },
+                      ),
+                      const Divider(height: 1),
+                      RadioListTile<String>(
+                        title: const Text('Buy and Sell'),
+                        subtitle: Text(
+                          'Both browse items and sell your own',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        value: 'both',
+                        groupValue: _selectedRole,
+                        activeColor: AppTheme.primaryColor,
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedRole = value!;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 16),
 

@@ -5,6 +5,9 @@ import '../../screens/auth/login_screen.dart';
 import '../../screens/auth/signup_screen.dart';
 import '../../screens/admin/admin_dashboard_screen.dart';
 import '../../screens/home/home_screen.dart';
+import '../../screens/buyer/browse_screen.dart';
+import '../../screens/seller/seller_dashboard_screen.dart';
+import '../../screens/seller/add_product_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -41,6 +44,25 @@ class AppRouter {
         path: '/admin',
         name: 'admin',
         builder: (context, state) => const AdminDashboardScreen(),
+      ),
+
+      // Browse/Shop Routes
+      GoRoute(
+        path: '/browse',
+        name: 'browse',
+        builder: (context, state) => const BrowseScreen(),
+      ),
+
+      // Seller Routes
+      GoRoute(
+        path: '/seller/dashboard',
+        name: 'seller-dashboard',
+        builder: (context, state) => const SellerDashboardScreen(),
+      ),
+      GoRoute(
+        path: '/seller/add-product',
+        name: 'add-product',
+        builder: (context, state) => const AddProductScreen(),
       ),
     ],
   );

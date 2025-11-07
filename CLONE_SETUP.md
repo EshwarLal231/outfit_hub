@@ -254,15 +254,27 @@ outfit_hub/
 
 ## Demo Credentials
 
-The app comes with demo credentials for testing:
+The app comes with demo credentials for testing different user roles:
 
 **Admin Account:**
 - Email: admin@outfithub.com
 - Password: admin123
+- Access: Admin dashboard with full control
 
-**User Account:**
-- Email: user@outfithub.com
-- Password: user123
+**Buyer Account:**
+- Email: buyer@outfithub.com
+- Password: buyer123
+- Access: Browse and purchase products
+
+**Seller Account:**
+- Email: seller@outfithub.com
+- Password: seller123
+- Access: List and manage products for sale
+
+**Buyer + Seller Account:**
+- Email: both@outfithub.com
+- Password: both123
+- Access: Full buyer and seller capabilities
 
 ## Troubleshooting
 

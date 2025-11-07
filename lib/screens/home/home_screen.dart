@@ -192,12 +192,50 @@ class HomeScreen extends StatelessWidget {
             
             _buildActionButton(
               context,
+              'Browse Products',
+              'Discover sustainable fashion deals',
+              Icons.shopping_bag_outlined,
+              AppTheme.primaryColor,
+              () {
+                context.push('/browse');
+              },
+            ),
+            const SizedBox(height: 12),
+            
+            // Show seller option if user is seller or both
+            if (user?.role == 'seller' || user?.role == 'both') ...[
+              _buildActionButton(
+                context,
+                'Seller Dashboard',
+                'Manage your listings and sales',
+                Icons.store_outlined,
+                AppTheme.accentColor,
+                () {
+                  context.push('/seller/dashboard');
+                },
+              ),
+              const SizedBox(height: 12),
+            ],
+            
+            _buildActionButton(
+              context,
               'Sell an Item',
               'List your pre-owned fashion items',
               Icons.add_circle_outline,
-              AppTheme.primaryColor,
+              user?.role == 'seller' || user?.role == 'both' 
+                  ? AppTheme.successColor 
+                  : AppTheme.secondaryColor,
               () {
-                // TODO: Navigate to sell item
+                if (user?.role == 'seller' || user?.role == 'both') {
+                  context.push('/seller/add-product');
+                } else {
+                  // TODO: Show upgrade to seller dialog
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please create a seller account to list items'),
+                    ),
+                  );
+                }
               },
             ),
             const SizedBox(height: 12),

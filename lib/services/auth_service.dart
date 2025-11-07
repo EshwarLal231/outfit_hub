@@ -36,12 +36,12 @@ class AuthService {
       return adminUser;
     }
 
-    // Check for regular user credentials
-    if (email == 'user@outfithub.com' && password == 'user123') {
-      final regularUser = UserModel(
+    // Check for buyer user credentials
+    if (email == 'buyer@outfithub.com' && password == 'buyer123') {
+      final buyerUser = UserModel(
         id: 'user001',
         name: 'John Doe',
-        email: 'user@outfithub.com',
+        email: 'buyer@outfithub.com',
         phone: '+92-300-9876543',
         location: 'Karachi',
         role: 'buyer',
@@ -52,8 +52,48 @@ class AuthService {
         createdAt: DateTime.now(),
       );
       
-      await _saveUserData(regularUser);
-      return regularUser;
+      await _saveUserData(buyerUser);
+      return buyerUser;
+    }
+
+    // Check for seller user credentials
+    if (email == 'seller@outfithub.com' && password == 'seller123') {
+      final sellerUser = UserModel(
+        id: 'seller001',
+        name: 'Jane Smith',
+        email: 'seller@outfithub.com',
+        phone: '+92-300-1111111',
+        location: 'Lahore',
+        role: 'seller',
+        rating: 4.8,
+        totalTransactions: 25,
+        isActive: true,
+        isVerified: true,
+        createdAt: DateTime.now(),
+      );
+      
+      await _saveUserData(sellerUser);
+      return sellerUser;
+    }
+
+    // Check for user with both roles
+    if (email == 'both@outfithub.com' && password == 'both123') {
+      final bothUser = UserModel(
+        id: 'both001',
+        name: 'Alex Johnson',
+        email: 'both@outfithub.com',
+        phone: '+92-300-2222222',
+        location: 'Islamabad',
+        role: 'both',
+        rating: 4.7,
+        totalTransactions: 15,
+        isActive: true,
+        isVerified: true,
+        createdAt: DateTime.now(),
+      );
+      
+      await _saveUserData(bothUser);
+      return bothUser;
     }
 
     // Invalid credentials
@@ -67,6 +107,7 @@ class AuthService {
     required String password,
     required String phone,
     required String location,
+    String role = 'buyer',
   }) async {
     // Simulate API call delay
     await Future.delayed(const Duration(seconds: 2));
@@ -92,7 +133,7 @@ class AuthService {
       email: email,
       phone: phone,
       location: location,
-      role: 'buyer',
+      role: role,
       rating: 0.0,
       totalTransactions: 0,
       isActive: true,
